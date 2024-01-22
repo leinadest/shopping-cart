@@ -3,13 +3,18 @@
 @tailwind utilities;
 
 @layer base {
-  button,
-  a {
-    @apply cursor-pointer;
+  main {
+    @apply p-6;
   }
 
   a {
     @apply h-6 box-border;
+  }
+
+  button,
+  a,
+  section {
+    @apply cursor-pointer;
   }
 }
 

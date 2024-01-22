@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import Logo from '../../assets/icons/store.svg';
 import Search from '../../assets/icons/search.svg';
 import Cart from '../../assets/icons/cart.svg';
 
-function Header() {
+function Header({ categoryNames }) {
   return (
     <header className="w-screen min-h-20 bg-slate-100">
       <div className="py-2 px-6 min-h-14 h-max items-center gap-x-10 gap-y-4 flex flex-col md:flex-row">
@@ -31,18 +32,24 @@ function Header() {
           ></a>
         </div>
       </div>
-      <div className="px-4 py-2 bg-black flex gap-x-10 gap-y-2 flex-wrap justify-evenly items-center">
-        <a className="min-w-fit text-white underline-white">Electronics</a>
-        <a className="min-w-fit text-white underline-white">Jewelery</a>
-        <a className="min-w-fit text-white underline-white">
-          Men&#39;s Clothing
-        </a>
-        <a className="min-w-fit text-white underline-white">
-          Women&#39;s Clothing
-        </a>
-      </div>
+      {categoryNames.length > 0 && (
+        <div className="px-4 py-2 bg-black flex gap-x-10 gap-y-2 flex-wrap justify-evenly items-center">
+          {categoryNames.map((categoryName) => (
+            <a
+              key={categoryName}
+              className="min-w-fit text-white underline-white capitalize"
+            >
+              {categoryName}
+            </a>
+          ))}
+        </div>
+      )}
     </header>
   );
 }
+
+Header.propTypes = {
+  categoryNames: PropTypes.array,
+};
 
 export default Header;
