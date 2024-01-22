@@ -19,6 +19,11 @@ export async function fetchCategory(category) {
   return data;
 }
 
+export async function fetchProduct(productId) {
+  const data = await fetchData(`${BASE_URL}${productId}`);
+  return data;
+}
+
 export async function fetchCategoryNames() {
   const data = await fetchData(`${BASE_URL}categories`);
   return data;

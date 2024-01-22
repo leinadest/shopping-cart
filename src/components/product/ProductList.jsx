@@ -10,6 +10,7 @@ function ProductList({ products }) {
           image={product.image}
           title={product.title}
           price={product.price}
+          id={product.id}
         />
       ))}
     </div>

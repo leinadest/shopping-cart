@@ -11,6 +11,10 @@
     @apply h-6 box-border;
   }
 
+  h2 {
+    @apply text-4xl;
+  }
+
   button,
   a,
   section {

@@ -1,9 +1,20 @@
-import PropTypes from 'prop-types';
 import Logo from '../../assets/icons/store.svg';
 import Search from '../../assets/icons/search.svg';
 import Cart from '../../assets/icons/cart.svg';
+import { fetchCategoryNames } from '../../api/api';
+import { useState, useEffect } from 'react';
 
-function Header({ categoryNames }) {
+const categoryNamesRequest = fetchCategoryNames();
+
+function Header() {
+  const [categoryNames, setCategoryNames] = useState([]);
+
+  useEffect(() => {
+    categoryNamesRequest.then((categoryNames) => {
+      setCategoryNames(categoryNames);
+    });
+  }, []);
+
   return (
     <header className="w-screen min-h-20 bg-slate-100">
       <div className="py-2 px-6 min-h-14 h-max items-center gap-x-10 gap-y-4 flex flex-col md:flex-row">
@@ -47,9 +58,5 @@ function Header({ categoryNames }) {
     </header>
   );
 }
-
-Header.propTypes = {
-  categoryNames: PropTypes.array,
-};
 
 export default Header;
