@@ -2,12 +2,15 @@ import Logo from '../../assets/icons/store.svg';
 import Search from '../../assets/icons/search.svg';
 import Cart from '../../assets/icons/cart.svg';
 import { fetchCategoryNames } from '../../api/api';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { CartContext } from '../../App';
 
 const categoryNamesRequest = fetchCategoryNames();
 
 function Header() {
   const [categoryNames, setCategoryNames] = useState([]);
+  const { items } = useContext(CartContext);
 
   useEffect(() => {
     categoryNamesRequest.then((categoryNames) => {
@@ -37,10 +40,15 @@ function Header() {
           <a className="min-w-fit underline-black">Sign In</a>
           <a className="min-w-fit underline-black">Orders & Returns</a>
           <a className="min-w-fit underline-black">Find a Store</a>
-          <a
+          <Link
+            to="/cart"
             style={{ backgroundImage: `url(${Cart})` }}
-            className="w-10 h-10 bg-no-repeat bg-center min-w-fit darken bg-slate-100 hover:bg-slate-200 rounded-full"
-          ></a>
+            className="relative w-10 h-10 bg-no-repeat bg-center min-w-fit darken bg-slate-100 hover:bg-slate-200 rounded-full"
+          >
+            <div className="absolute right-1 bottom-1 w-0 h-0 p-2 rounded-full bg-black text-xs text-white flex justify-center items-center">
+              {items.length}
+            </div>
+          </Link>
         </div>
       </div>
       {categoryNames.length > 0 && (

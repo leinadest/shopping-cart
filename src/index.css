@@ -15,6 +15,11 @@
     @apply text-4xl;
   }
 
+  /* td,
+  th {
+    @apply border-2;
+  } */
+
   button,
   a,
   section {
@@ -23,16 +28,15 @@
 }
 
 @layer utilities {
-  .underline-black,
+  .underline-black {
+    @apply transition hover:border-black hover:border-b-2;
+  }
+
   .underline-white {
-    @apply transition;
+    @apply transition hover:border-white hover:border-b-2;
   }
 
-  .underline-black:hover {
-    @apply border-black border-b-2;
-  }
-
-  .underline-white:hover {
-    @apply border-white border-b-2;
+  .white-btn {
+    @apply rounded-lg py-2 px-4 border-2 border-black transition hover:bg-black hover:text-white;
   }
 }
