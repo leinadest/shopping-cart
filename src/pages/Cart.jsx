@@ -11,10 +11,10 @@ function Cart() {
     .toFixed(2);
 
   return (
-    <main className="flex flex-col">
+    <main className="flex flex-col bg-none">
       <h2 className="text-center mb-4">Cart</h2>
       {items.length > 0 ? (
-        <table className="w-full">
+        <table className="w-full bg-white">
           <colgroup>
             <col></col>
             <col className="min-w-16 md:min-w-24" span="3"></col>

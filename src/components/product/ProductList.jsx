@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function ProductList({ products }) {
   return (
-    <div className="px-4 flex flex-wrap justify-evenly items-start gap-4">
+    <div className="grid grid-cols-autofit-sm gap-2 md:grid-cols-autofit-lg md:gap-4">
       {products.map((product) => (
         <ProductItem
           key={product.id}

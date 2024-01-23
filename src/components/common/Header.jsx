@@ -1,6 +1,6 @@
-import Logo from '../../assets/icons/store.svg';
-import Search from '../../assets/icons/search.svg';
-import Cart from '../../assets/icons/cart.svg';
+import Logo from '../../assets/images/store.svg';
+import Search from '../../assets/images/search.svg';
+import Cart from '../../assets/images/cart.svg';
 import { fetchCategoryNames } from '../../api/api';
 import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -21,10 +21,13 @@ function Header() {
   return (
     <header className="w-screen min-h-20 bg-slate-100">
       <div className="py-2 px-6 min-h-14 h-max items-center gap-x-10 gap-y-4 flex flex-col md:flex-row">
-        <div className="min-w-fit flex gap-10 items-center">
+        <Link
+          to="/"
+          className="min-w-fit flex gap-10 items-center transition hover:scale-105"
+        >
           <img src={Logo} className="h-10 w-auto"></img>
           <h1 className="text-xl -ml-9">store</h1>
-        </div>
+        </Link>
         <form className="w-full box-border py-0.5 px-2 flex items-center gap-2 border-black rounded-md border-2">
           <button
             className="h-6 w-6"

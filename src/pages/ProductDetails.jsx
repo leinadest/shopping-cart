@@ -19,7 +19,7 @@ function ProductDetails() {
       {product && (
         <main className="flex flex-wrap items-center gap-8 justify-evenly">
           <img
-            className="object-contain h-[min(70vh,_70vw)] w-[min(70vw,_70vh)]"
+            className="px-2 bg-white rounded-2xl object-contain h-[min(70vh,_70vw)] w-[min(70vw,_70vh)]"
             src={product.image}
           ></img>
           <section className="flex flex-col flex-1 basis-1/3">

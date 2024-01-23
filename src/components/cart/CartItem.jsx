@@ -15,10 +15,10 @@ function CartItem({ product }) {
     <tr className="text-center">
       <td className="flex items-center">
         <img
-          className="h-40 w-40 object-contain border-2 p-2 mr-4 rounded-xl"
+          className="h-40 w-20 min-w-20 sm:w-40 sm:min-w-40 object-contain border-2 p-2 mr-4 rounded-xl"
           src={product.image}
         ></img>
-        <p className="hidden md:block">{product.title}</p>
+        <p className="hidden md:block text-left">{product.title}</p>
       </td>
       <td>
         <p>{`$${product.price}`}</p>
