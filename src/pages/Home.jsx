@@ -16,10 +16,11 @@ function Home() {
   return (
     <main>
       {Object.keys(categories).map((category, index) => (
-        <section key={index}>
-          <h2 className="text-center m-10 capitalize">{category}</h2>
-          <ProductList products={categories[category]} />
-        </section>
+        <ProductList
+          key={index}
+          heading={category}
+          products={categories[category]}
+        />
       ))}
     </main>
   );

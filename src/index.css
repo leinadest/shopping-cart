@@ -8,7 +8,7 @@
   }
 
   main {
-    @apply flex-1 p-6 bg-[url('./assets/images/bg.jpg')] bg-cover;
+    @apply flex-1 p-6 bg-cover bg-[url('./assets/images/bg.jpg')];
   }
 
   a {
