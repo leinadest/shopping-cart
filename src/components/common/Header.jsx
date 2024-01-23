@@ -1,6 +1,4 @@
 import Logo from '../../assets/images/store.svg';
-import Search from '../../assets/images/search.svg';
-import Cart from '../../assets/images/cart.svg';
 import { fetchCategoryNames } from '../../api/api';
 import { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -39,10 +37,7 @@ function Header() {
           onSubmit={handleSubmit}
           className="w-full box-border py-0.5 px-2 flex items-center gap-2 border-black rounded-md border-2"
         >
-          <button
-            className="h-6 w-6"
-            style={{ backgroundImage: `url(${Search})` }}
-          ></button>
+          <button className="search-icon h-6 w-6"></button>
           <input
             type="text"
             className="w-full px-2 bg-slate-100 outline-none"
@@ -55,8 +50,7 @@ function Header() {
           <a className="min-w-fit underline-black">Find a Store</a>
           <Link
             to="/cart"
-            style={{ backgroundImage: `url(${Cart})` }}
-            className="relative w-10 h-10 bg-no-repeat bg-center min-w-fit darken bg-slate-100 hover:bg-slate-200 rounded-full"
+            className="cart-icon relative w-10 h-10 bg-no-repeat bg-center min-w-fit darken bg-slate-100 hover:bg-slate-200 rounded-full"
           >
             <div className="absolute right-1 bottom-1 w-0 h-0 p-2 rounded-full bg-black text-xs text-white flex justify-center items-center">
               {items.length}

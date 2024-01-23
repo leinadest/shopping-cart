@@ -27,6 +27,14 @@
 }
 
 @layer utilities {
+  .cart-icon {
+    @apply bg-[url('./assets/images/cart.svg')];
+  }
+
+  .search-icon {
+    @apply bg-[url('./assets/images/search.svg')];
+  }
+
   .underline-black {
     @apply transition hover:border-black hover:border-b-2;
   }
