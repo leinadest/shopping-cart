@@ -57,12 +57,13 @@ function Header() {
       {categoryNames.length > 0 && (
         <div className="px-4 py-2 bg-black flex gap-x-10 gap-y-2 flex-wrap justify-evenly items-center">
           {categoryNames.map((categoryName) => (
-            <a
+            <Link
+              to={`/categories/${categoryName}`}
               key={categoryName}
               className="min-w-fit text-white underline-white capitalize"
             >
               {categoryName}
-            </a>
+            </Link>
           ))}
         </div>
       )}
