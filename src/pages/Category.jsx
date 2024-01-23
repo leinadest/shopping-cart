@@ -16,7 +16,7 @@ function Category() {
 
   return (
     <main>
-      {products.length > 0 && (
+      {products.length > 0 && products[0].category === categoryName && (
         <ProductList heading={categoryName} products={products}></ProductList>
       )}
     </main>

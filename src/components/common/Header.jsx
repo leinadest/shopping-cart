@@ -3,7 +3,7 @@ import Search from '../../assets/images/search.svg';
 import Cart from '../../assets/images/cart.svg';
 import { fetchCategoryNames } from '../../api/api';
 import { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CartContext } from '../../App';
 
 const categoryNamesRequest = fetchCategoryNames();
@@ -11,6 +11,13 @@ const categoryNamesRequest = fetchCategoryNames();
 function Header() {
   const [categoryNames, setCategoryNames] = useState([]);
   const { items } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const searchValue = event.target.querySelector('input').value;
+    navigate(`/search/${searchValue}`);
+  }
 
   useEffect(() => {
     categoryNamesRequest.then((categoryNames) => {
@@ -28,7 +35,10 @@ function Header() {
           <img src={Logo} className="h-10 w-auto"></img>
           <h1 className="text-xl -ml-9">store</h1>
         </Link>
-        <form className="w-full box-border py-0.5 px-2 flex items-center gap-2 border-black rounded-md border-2">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full box-border py-0.5 px-2 flex items-center gap-2 border-black rounded-md border-2"
+        >
           <button
             className="h-6 w-6"
             style={{ backgroundImage: `url(${Search})` }}

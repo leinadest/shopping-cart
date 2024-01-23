@@ -41,3 +41,7 @@ export async function fetchCategories() {
   });
   return newCategories;
 }
+
+export async function fetchProducts() {
+  return await fetchData(BASE_URL);
+}
