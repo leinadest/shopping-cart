@@ -15,9 +15,9 @@ function ProductDetails() {
   }, [productId]);
 
   return (
-    <>
+    <main className="flex flex-wrap items-center gap-8 justify-evenly">
       {product && (
-        <main className="flex flex-wrap items-center gap-8 justify-evenly">
+        <>
           <img
             className="px-2 bg-white rounded-2xl object-contain h-[min(70vh,_70vw)] w-[min(70vw,_70vh)]"
             src={product.image}
@@ -44,9 +44,9 @@ function ProductDetails() {
               </button>
             )}
           </section>
-        </main>
+        </>
       )}
-    </>
+    </main>
   );
 }
 
