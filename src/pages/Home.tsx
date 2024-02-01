@@ -1,23 +1,25 @@
 import ProductList from '../components/product/ProductList';
-import { fetchCategories } from '../api/api';
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
 import SlideInViewport from '../components/wrappers/SlideInViewport';
-
-const categoriesRequest = fetchCategories();
+import { ShopContext } from '../App';
+import { Product, IShopContext } from '../types/types';
 
 function Home() {
-  const [categories, setCategories] = useState({});
+  const { shopItems } = useContext<IShopContext>(ShopContext);
+  const categories: Record<string, Product[]> = {};
 
-  useEffect(() => {
-    categoriesRequest.then((categories) => {
-      setCategories(categories);
-    });
-  }, []);
+  shopItems.forEach((shopItem) => {
+    if (categories[shopItem.category]) {
+      categories[shopItem.category].push(shopItem);
+    } else {
+      categories[shopItem.category] = [shopItem];
+    }
+  });
 
   return (
     <main>
       {Object.keys(categories).map((category, index) => (
-        <SlideInViewport>
+        <SlideInViewport key={index}>
           <h2 className=" text-center m-10 capitalize">{category}</h2>
           <ProductList
             key={index}

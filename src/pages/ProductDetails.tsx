@@ -1,20 +1,14 @@
 import { useParams } from 'react-router-dom';
-import { fetchProduct } from '../api/api';
-import { useEffect, useState, useContext } from 'react';
-import { Product, ICartContext } from '../types/types';
-import { CartContext } from '../App';
+import { useContext } from 'react';
+import { IShopContext } from '../types/types';
+import { ShopContext } from '../App';
 
 function ProductDetails() {
   const { productId } = useParams();
-  const [product, setProduct] = useState<Product | null>(null);
-  const { items, addToCart, removeFromCart } =
-    useContext<ICartContext>(CartContext);
+  const { shopItems, cartItems, addToCart, removeFromCart } =
+    useContext<IShopContext>(ShopContext);
 
-  useEffect(() => {
-    fetchProduct(productId as string).then((productResolve) => {
-      setProduct(productResolve);
-    });
-  }, [productId]);
+  const product = shopItems.find((item) => item.id.toString() === productId);
 
   return (
     <main className="flex flex-wrap items-center gap-8 justify-evenly">
@@ -30,7 +24,9 @@ function ProductDetails() {
             <p className="mb-6">{product.description}</p>
             <p className="capitalize self-center">{`Category: ${product.category}`}</p>
             <p className="self-center">{`Rating: ${product.rating.rate} (${product.rating.count})`}</p>
-            {items.find((item) => item.id.toString() === productId) ? (
+            {cartItems.find(
+              (cartItem) => cartItem.id.toString() === productId,
+            ) ? (
               <button
                 onClick={() => removeFromCart(product)}
                 className="self-center mt-6 px-10 py-3 border-2 border-black rounded-lg transition hover:bg-black hover:text-white"

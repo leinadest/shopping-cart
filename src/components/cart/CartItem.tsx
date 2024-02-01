@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { CartContext } from '../../App';
-import { ICartContext, Product } from '../../types/types';
+import { ShopContext } from '../../App';
+import { IShopContext, Product } from '../../types/types';
 
 interface CartItemProps {
   product: Product;
@@ -8,7 +8,7 @@ interface CartItemProps {
 
 function CartItem({ product }: CartItemProps) {
   const { changeItemQuantity, removeFromCart } =
-    useContext<ICartContext>(CartContext);
+    useContext<IShopContext>(ShopContext);
 
   const total = (product.price * product.quantity).toFixed(2);
 

@@ -1,13 +1,13 @@
 import { useContext } from 'react';
-import { CartContext } from '../App';
-import { ICartContext } from '../types/types';
+import { ShopContext } from '../App';
+import { IShopContext } from '../types/types';
 import { Link } from 'react-router-dom';
 import CartItem from '../components/cart/CartItem';
 
 function Cart() {
-  const { items } = useContext<ICartContext>(CartContext);
+  const { cartItems } = useContext<IShopContext>(ShopContext);
 
-  const subtotal = items
+  const subtotal = cartItems
     .reduce((total, item) => total + item.price * item.quantity, 0)
     .toFixed(2);
 
@@ -28,11 +28,11 @@ function Cart() {
             <th>Total</th>
           </tr>
         </thead>
-        {items.length > 0 && (
+        {cartItems.length > 0 && (
           <tbody className="border-b-2">
             <tr className="h-4"></tr>
-            {items.map((item) => (
-              <CartItem key={item.id} product={item}></CartItem>
+            {cartItems.map((cartItem) => (
+              <CartItem key={cartItem.id} product={cartItem}></CartItem>
             ))}
             <tr className="h-4"></tr>
           </tbody>

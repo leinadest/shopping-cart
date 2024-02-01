@@ -12,8 +12,9 @@ export interface Product {
   };
 }
 
-export interface ICartContext {
-  items: Product[];
+export interface IShopContext {
+  shopItems: Product[];
+  cartItems: Product[];
   addToCart: (product: Product) => void;
   changeItemQuantity: (product: Product, change: number) => void;
   removeFromCart: (product: Product) => void;

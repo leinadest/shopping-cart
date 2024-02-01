@@ -1,20 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchCategory } from '../api/api';
-import PropTypes from 'prop-types';
 import ProductList from '../components/product/ProductList';
-import { Product } from '../types/types';
+import { IShopContext } from '../types/types';
 import SlideInViewport from '../components/wrappers/SlideInViewport';
+import { ShopContext } from '../App';
 
 function Category() {
   const { categoryName } = useParams();
-  const [products, setProducts] = useState<Product[]>([]);
+  const { shopItems } = useContext<IShopContext>(ShopContext);
 
-  useEffect(() => {
-    fetchCategory(categoryName as string).then((resolvedCategory) => {
-      setProducts(resolvedCategory);
-    });
-  }, [categoryName]);
+  const products = shopItems.filter(
+    (shopItem) => shopItem.category === categoryName,
+  );
 
   return (
     <main>
@@ -27,9 +24,5 @@ function Category() {
     </main>
   );
 }
-
-Category.propTypes = {
-  category: PropTypes.object,
-};
 
 export default Category;

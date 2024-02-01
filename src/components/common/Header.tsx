@@ -1,15 +1,11 @@
 import Logo from '../../assets/images/store.svg';
-import { fetchCategoryNames } from '../../api/api';
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { CartContext } from '../../App';
-import { ICartContext } from '../../types/types';
-
-const categoryNamesRequest = fetchCategoryNames();
+import { ShopContext } from '../../App';
+import { IShopContext } from '../../types/types';
 
 function Header() {
-  const [categoryNames, setCategoryNames] = useState<string[]>([]);
-  const { items } = useContext<ICartContext>(CartContext);
+  const { shopItems, cartItems } = useContext<IShopContext>(ShopContext);
   const navigate = useNavigate();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -20,10 +16,9 @@ function Header() {
     navigate(`/search/${searchValue}`);
   }
 
-  useEffect(() => {
-    categoryNamesRequest.then((categoryNames) => {
-      setCategoryNames(categoryNames);
-    });
+  const categoryNames = shopItems.reduce((total: string[], shopItem) => {
+    if (total.includes(shopItem.category)) return total;
+    else return total.concat(shopItem.category);
   }, []);
 
   return (
@@ -56,7 +51,7 @@ function Header() {
             className="cart-icon relative w-10 h-10 bg-no-repeat bg-center min-w-fit darken bg-slate-100 hover:bg-slate-200 rounded-full"
           >
             <div className="absolute right-1 bottom-1 w-0 h-0 p-2 rounded-full bg-black text-xs text-white flex justify-center items-center">
-              {items.length}
+              {cartItems.length}
             </div>
           </Link>
         </div>
