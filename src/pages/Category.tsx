@@ -4,6 +4,7 @@ import { fetchCategory } from '../api/api';
 import PropTypes from 'prop-types';
 import ProductList from '../components/product/ProductList';
 import { Product } from '../types/types';
+import SlideInViewport from '../components/wrappers/SlideInViewport';
 
 function Category() {
   const { categoryName } = useParams();
@@ -18,7 +19,10 @@ function Category() {
   return (
     <main>
       {products.length > 0 && products[0].category === categoryName && (
-        <ProductList heading={categoryName} products={products}></ProductList>
+        <SlideInViewport>
+          <h2 className=" text-center m-10 capitalize">{categoryName}</h2>
+          <ProductList products={products}></ProductList>
+        </SlideInViewport>
       )}
     </main>
   );

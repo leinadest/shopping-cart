@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { fetchProducts } from '../api/api';
 import ProductList from '../components/product/ProductList';
 import { Product } from '../types/types';
+import SlideInViewport from '../components/wrappers/SlideInViewport';
 
 function Search() {
   const { productName } = useParams();
@@ -26,15 +27,17 @@ function Search() {
 
   return (
     <main>
-      {products && products.length > 0 && (
-        <ProductList
-          heading={`Search results for "${productName}"`}
-          products={products}
-        ></ProductList>
-      )}
-      {products === null && (
-        <h2 className="text-center">{`No results for "${productName}"`}</h2>
-      )}
+      {allProducts.length > 0 &&
+        (products.length > 0 ? (
+          <>
+            <h2 className="text-center mb-6">{`Search results for "${productName}"`}</h2>
+            <SlideInViewport>
+              <ProductList products={products}></ProductList>
+            </SlideInViewport>
+          </>
+        ) : (
+          <h2 className="text-center">{`No results for "${productName}"`}</h2>
+        ))}
     </main>
   );
 }
