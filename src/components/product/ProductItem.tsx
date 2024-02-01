@@ -1,7 +1,13 @@
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function ProductItem({ image, title, price, id }) {
+interface ProductItemProps {
+  image: string;
+  title: string;
+  price: number;
+  id: number;
+}
+
+function ProductItem({ image, title, price, id }: ProductItemProps) {
   return (
     <Link
       to={`/products/${id}`}
@@ -18,12 +24,5 @@ function ProductItem({ image, title, price, id }) {
     </Link>
   );
 }
-
-ProductItem.propTypes = {
-  image: PropTypes.string,
-  title: PropTypes.string,
-  price: PropTypes.number,
-  id: PropTypes.number,
-};
 
 export default ProductItem;

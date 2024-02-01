@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchProducts } from '../api/api';
 import ProductList from '../components/product/ProductList';
+import { Product } from '../types/types';
 
 function Search() {
   const { productName } = useParams();
-  const [products, setProducts] = useState([]);
-  const [allProducts, setAllProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     fetchProducts().then((fetchedProducts) => setAllProducts(fetchedProducts));
@@ -17,10 +18,10 @@ function Search() {
       return;
     }
     const matchingProducts = allProducts.filter((product) =>
-      product.title.toLowerCase().includes(productName),
+      product.title.toLowerCase().includes(productName as string),
     );
     if (matchingProducts.length > 0) setProducts(matchingProducts);
-    else setProducts(null);
+    else setProducts([]);
   }, [productName, allProducts]);
 
   return (

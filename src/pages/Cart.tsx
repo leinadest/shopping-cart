@@ -1,10 +1,11 @@
 import { useContext } from 'react';
 import { CartContext } from '../App';
+import { ICartContext } from '../types/types';
 import { Link } from 'react-router-dom';
 import CartItem from '../components/cart/CartItem';
 
 function Cart() {
-  const { items } = useContext(CartContext);
+  const { items } = useContext<ICartContext>(CartContext);
 
   const subtotal = items
     .reduce((total, item) => total + item.price * item.quantity, 0)
@@ -17,7 +18,7 @@ function Cart() {
       <table className="w-full bg-white">
         <colgroup>
           <col></col>
-          <col className="min-w-16 md:min-w-24" span="3"></col>
+          <col className="min-w-16 md:min-w-24" span={3}></col>
         </colgroup>
         <thead className="border-b-2">
           <tr>

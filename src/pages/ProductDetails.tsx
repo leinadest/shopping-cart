@@ -1,15 +1,17 @@
 import { useParams } from 'react-router-dom';
 import { fetchProduct } from '../api/api';
 import { useEffect, useState, useContext } from 'react';
+import { Product, ICartContext } from '../types/types';
 import { CartContext } from '../App';
 
 function ProductDetails() {
   const { productId } = useParams();
-  const [product, setProduct] = useState(null);
-  const { items, addToCart, removeFromCart } = useContext(CartContext);
+  const [product, setProduct] = useState<Product | null>(null);
+  const { items, addToCart, removeFromCart } =
+    useContext<ICartContext>(CartContext);
 
   useEffect(() => {
-    fetchProduct(productId).then((productResolve) => {
+    fetchProduct(productId as string).then((productResolve) => {
       setProduct(productResolve);
     });
   }, [productId]);

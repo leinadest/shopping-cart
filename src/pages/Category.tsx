@@ -3,13 +3,14 @@ import { useParams } from 'react-router-dom';
 import { fetchCategory } from '../api/api';
 import PropTypes from 'prop-types';
 import ProductList from '../components/product/ProductList';
+import { Product } from '../types/types';
 
 function Category() {
   const { categoryName } = useParams();
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetchCategory(categoryName).then((resolvedCategory) => {
+    fetchCategory(categoryName as string).then((resolvedCategory) => {
       setProducts(resolvedCategory);
     });
   }, [categoryName]);

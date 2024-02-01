@@ -3,17 +3,20 @@ import { fetchCategoryNames } from '../../api/api';
 import { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CartContext } from '../../App';
+import { ICartContext } from '../../types/types';
 
 const categoryNamesRequest = fetchCategoryNames();
 
 function Header() {
-  const [categoryNames, setCategoryNames] = useState([]);
-  const { items } = useContext(CartContext);
+  const [categoryNames, setCategoryNames] = useState<string[]>([]);
+  const { items } = useContext<ICartContext>(CartContext);
   const navigate = useNavigate();
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const searchValue = event.target.querySelector('input').value;
+    const searchValue = (event.target as HTMLInputElement).querySelector(
+      'input',
+    )?.value;
     navigate(`/search/${searchValue}`);
   }
 

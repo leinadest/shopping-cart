@@ -1,9 +1,14 @@
 import ProductItem from './ProductItem';
-import PropTypes from 'prop-types';
 import { useState, useEffect, useReducer } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { Product } from '../../types/types';
 
-function ProductList({ heading, products }) {
+interface ProductListProps {
+  heading: string;
+  products: Product[];
+}
+
+function ProductList({ heading, products }: ProductListProps) {
   const [visible, setVisible] = useState(false);
   const [prevState, dispatch] = useReducer(() => ({ heading, products }), {
     heading: '',
@@ -62,10 +67,5 @@ function ProductList({ heading, products }) {
     </section>
   );
 }
-
-ProductList.propTypes = {
-  heading: PropTypes.string,
-  products: PropTypes.array,
-};
 
 export default ProductList;

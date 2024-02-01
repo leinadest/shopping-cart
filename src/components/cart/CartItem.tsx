@@ -1,13 +1,18 @@
-import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { CartContext } from '../../App';
+import { ICartContext, Product } from '../../types/types';
 
-function CartItem({ product }) {
-  const { changeItemQuantity, removeFromCart } = useContext(CartContext);
+interface CartItemProps {
+  product: Product;
+}
+
+function CartItem({ product }: CartItemProps) {
+  const { changeItemQuantity, removeFromCart } =
+    useContext<ICartContext>(CartContext);
 
   const total = (product.price * product.quantity).toFixed(2);
 
-  function handleQuantityButton(product, change) {
+  function handleQuantityButton(product: Product, change: number) {
     if (product.quantity + change > 0) changeItemQuantity(product, change);
   }
 
@@ -51,9 +56,5 @@ function CartItem({ product }) {
     </tr>
   );
 }
-
-CartItem.propTypes = {
-  product: PropTypes.object,
-};
 
 export default CartItem;

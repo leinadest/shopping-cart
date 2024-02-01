@@ -19,7 +19,7 @@ function Home() {
         <ProductList
           key={index}
           heading={category}
-          products={categories[category]}
+          products={categories[category as keyof object]}
         />
       ))}
     </main>
